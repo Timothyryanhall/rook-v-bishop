@@ -19,15 +19,27 @@ public class Game {
             System.out.println("------------- Turn " + turn + " -------------");
             Coin coin = flip();
             int dice = rollDice();
-            GameStatus gStatus = board.rook.move(board, coin, dice);
-            board.printPieceLocations();
-            if (gStatus != GameStatus.ACTIVE) {
-                this.gameStatus = gStatus;
-                System.out.println("The game is over!!! " + gStatus.toString());
+
+            Square newRookSquare = board.rook.move(board, coin, dice);
+
+            if (bishopIsCaptured(board, newRookSquare)) {
+                board.printPieceLocations();
+                this.gameStatus = GameStatus.BLACK_ROOK_WINS;
+                System.out.println("The Rook captured the Bishop! The Game is Over! " + this.gameStatus);
                 break;
             }
+            if (rookInBishopSquare(board, newRookSquare)) {
+                board.printPieceLocations();
+                this.gameStatus = GameStatus.WHITE_BISHOP_WINS;
+                System.out.println("The Bishop captured the Rook! The Game is Over! " + this.gameStatus);
+                break;
+            }
+
+            board.printPieceLocations();
+
             turn++;
         }
+
         if (this.gameStatus == GameStatus.ACTIVE){
             System.out.println("The game is over!!! " + GameStatus.BLACK_ROOK_WINS.toString());
         }
@@ -47,6 +59,14 @@ public class Game {
         }
         System.out.println("Tails");
         return Coin.Tails;
+    }
+
+    private boolean rookInBishopSquare(Board board, Square square) {
+        return board.bishopSquares.get(square) != null;
+    }
+
+    public boolean bishopIsCaptured(Board board, Square square) {
+        return square == board.getSquare(2, 2);
     }
 }
 
