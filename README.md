@@ -37,3 +37,6 @@ We decide to move the black rook and play for its survival. The move happens as 
 - The starting position for rook is h1 square and bishop remains stationary on c3.
   Write code to determine which player won, given the above constraints. Make sure to record (or
   print) the result of coin toss, dice and rook's position after every move.
+
+
+todo: make map of files, use initialize functions for classes

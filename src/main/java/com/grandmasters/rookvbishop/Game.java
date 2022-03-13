@@ -4,9 +4,10 @@ import java.util.Random;
 
 public class Game {
     public GameStatus gameStatus = GameStatus.ACTIVE;
-    public enum Coin {Heads, Tails}
     public Random randomNum = new Random();
     int turn = 1;
+
+    public enum Coin {Heads, Tails}
 
     public Game() {
         Board board = new Board();
@@ -22,27 +23,28 @@ public class Game {
 
             Square newRookSquare = board.rook.move(board, coin, dice);
 
-            if (bishopIsCaptured(board, newRookSquare)) {
-                board.printPieceLocations();
-                this.gameStatus = GameStatus.BLACK_ROOK_WINS;
-                System.out.println("The Rook captured the Bishop! The Game is Over! " + this.gameStatus);
+            if (rookLandsOnBishopSquare(board, newRookSquare)) {
+                finishGame(board, GameStatus.BLACK_ROOK_WINS, Rook.ROOK, Bishop.BISHOP);
                 break;
             }
-            if (rookInBishopSquare(board, newRookSquare)) {
-                board.printPieceLocations();
-                this.gameStatus = GameStatus.WHITE_BISHOP_WINS;
-                System.out.println("The Bishop captured the Rook! The Game is Over! " + this.gameStatus);
+            if (bishopCapturesRook(board, newRookSquare)) {
+                finishGame(board, GameStatus.WHITE_BISHOP_WINS, Bishop.BISHOP, Rook.ROOK);
                 break;
             }
 
             board.printPieceLocations();
-
             turn++;
         }
 
-        if (this.gameStatus == GameStatus.ACTIVE){
+        if (this.gameStatus == GameStatus.ACTIVE) {
             System.out.println("The game is over!!! " + GameStatus.BLACK_ROOK_WINS.toString());
         }
+    }
+
+    private void finishGame(Board board, GameStatus gameStatus, String winner, String loser) {
+        this.gameStatus = gameStatus;
+        board.printPieceLocations();
+        System.out.println("The " + winner + " has captured the " + loser + "! The Game is Over! " + "\n" + this.gameStatus);
     }
 
     public int rollDice() {
@@ -61,11 +63,11 @@ public class Game {
         return Coin.Tails;
     }
 
-    private boolean rookInBishopSquare(Board board, Square square) {
-        return board.bishopSquares.get(square) != null;
+    private boolean bishopCapturesRook(Board board, Square square) {
+        return board.bishopSquares.contains(square);
     }
 
-    public boolean bishopIsCaptured(Board board, Square square) {
+    public boolean rookLandsOnBishopSquare(Board board, Square square) {
         return square == board.getSquare(2, 2);
     }
 }

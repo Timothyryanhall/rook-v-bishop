@@ -1,16 +1,14 @@
 package com.grandmasters.rookvbishop;
 
 import java.util.HashMap;
+import java.util.HashSet;
 
 public class Board {
     Square[][] board;
     public Rook rook;
     public Bishop bishop;
-    public HashMap<Square,Integer> bishopSquares;
-
-    public Square getSquare(int x, int y) {
-        return this.board[x][y];
-    }
+    public HashSet<Square> bishopSquares;
+    private HashMap<Integer, String> rank;
 
     public Board() {
         this.board = new Square[8][8];
@@ -19,24 +17,42 @@ public class Board {
 
         this.resetBoard(bishop, rook);
         assignBishopSquares(this);
+        rankMap();
+    }
+
+    private void rankMap() {
+        this.rank = new HashMap<>() {{
+            put(0, "a");
+            put(1, "b");
+            put(2, "c");
+            put(3, "d");
+            put(4, "e");
+            put(5, "f");
+            put(6, "g");
+            put(7, "h");
+        }};
+    }
+
+    public Square getSquare(int x, int y) {
+        return this.board[x][y];
     }
 
     private void assignBishopSquares(Board board) {
-        this.bishopSquares = new HashMap<>() {{
-            put(board.getSquare(0,0), 1);
-            put(board.getSquare(1,1), 1);
-            put(board.getSquare(2,2), 1);
-            put(board.getSquare(3,3), 1);
-            put(board.getSquare(4,4), 1);
-            put(board.getSquare(5,5), 1);
-            put(board.getSquare(6,6), 1);
-            put(board.getSquare(7,7), 1);
+        this.bishopSquares = new HashSet<>() {{
+            add(board.getSquare(0, 0));
+            add(board.getSquare(1, 1));
+            add(board.getSquare(2, 2));
+            add(board.getSquare(3, 3));
+            add(board.getSquare(4, 4));
+            add(board.getSquare(5, 5));
+            add(board.getSquare(6, 6));
+            add(board.getSquare(7, 7));
 
-            put(board.getSquare(0,4), 1);
-            put(board.getSquare(1,3), 1);
-            put(board.getSquare(2,2), 1);
-            put(board.getSquare(3,1), 1);
-            put(board.getSquare(4,0), 1);
+            add(board.getSquare(0, 4));
+            add(board.getSquare(1, 3));
+            add(board.getSquare(2, 2));
+            add(board.getSquare(3, 1));
+            add(board.getSquare(4, 0));
         }};
     }
 
@@ -59,8 +75,8 @@ public class Board {
                     System.out.print(
                             this.board[i][j].getPiece().getColor() + " " +
                                     this.board[i][j].getPiece().getName() + " is on square " +
-                                    this.board[i][j].getX() + "," +
-                                    this.board[i][j].getY() + "\n"
+                                    rank.get(this.board[i][j].getX()) +
+                                    (this.board[i][j].getY() + 1) + "\n"
                     );
                 }
             }
