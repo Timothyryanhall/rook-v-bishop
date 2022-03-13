@@ -37,7 +37,7 @@ public class Game {
         }
 
         if (this.gameStatus == GameStatus.ACTIVE) {
-            System.out.println("The game is over!!! " + GameStatus.BLACK_ROOK_WINS.toString());
+            System.out.println("The game is over!!! The Rook has survived 15 rounds!" + "\n" + GameStatus.BLACK_ROOK_WINS.toString());
         }
     }
 
