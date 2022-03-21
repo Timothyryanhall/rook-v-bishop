@@ -8,7 +8,7 @@ A Spring Boot Command Line Application which runs through a single game of Rook 
 
 - Rook Vs Bishop: The white bishop remains on square c3 throughout the entirety of the game, and the black rook tries to
   survive 15 turns without landing in the white bishop's line of fire. If the rook survives 15 rounds or lands on square
-  c3, then he wins; otherwise the white bishop wins. Each of the rook's moves are determined by the flipping of a coin
+  c3, then she wins; otherwise the white bishop wins. Each of the rook's moves are determined by the flipping of a coin
   and sum of numbers on two rolled die.
 - Rook Vs Liberated Bishop: Similar to the above game, but now the bishop moves as well, and a piece can only win if it
   lands on the square of another piece. If no one wins in 10 moves it is a stalemate.
