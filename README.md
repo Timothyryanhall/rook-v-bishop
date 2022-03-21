@@ -2,7 +2,8 @@
 
 A Spring Boot Command Line Application which runs through a single game of Rook Vs Bishop or one of its variants.
 
-![Image of game board](src/main/resources/board-image.png)
+
+<img src="src/main/resources/board-image.png" width="500" height="500" />
 
 ## Game Explanation
 

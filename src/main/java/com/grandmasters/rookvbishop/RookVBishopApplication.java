@@ -9,12 +9,13 @@ import java.util.Arrays;
 import static com.grandmasters.rookvbishop.Game.*;
 
 @SpringBootApplication
-public class RookvbishopApplication implements CommandLineRunner {
+public class RookVBishopApplication implements CommandLineRunner {
 
     public static void main(String[] args) {
-        SpringApplication.run(RookvbishopApplication.class, args);
+        SpringApplication.run(RookVBishopApplication.class, args);
     }
 
+    @Override
     public void run(String... args) {
         String commandLineArgs = Arrays.toString(args).replaceAll("[\\[\\](){},]", "");
         switch (commandLineArgs) {

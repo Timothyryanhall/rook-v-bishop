@@ -4,6 +4,7 @@ public class RookVsBishop extends Game {
     private final Board board;
 
     public RookVsBishop() {
+        System.out.println("\n------------ Let the Game Begin! Rook Vs Bishop ------------");
         this.board = new Board();
     }
 

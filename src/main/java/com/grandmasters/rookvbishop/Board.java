@@ -11,13 +11,13 @@ public class Board {
     public HashMap<Integer, String> rank;
 
     public Board() {
+        rankMap();
         this.board = new Square[8][8];
         this.bishop = new Bishop(true);
         this.rook = new Rook(false);
 
         this.resetBoard(bishop, rook);
         assignBishopSquares(this);
-        rankMap();
     }
 
     private void rankMap() {
@@ -67,6 +67,8 @@ public class Board {
         // add bishop and rook to starting positions
         board[2][2].setPiece(bishop);
         board[7][0].setPiece(rook);
+        System.out.println("The bishop is on square " + rank.get(this.bishop.currentSquare.getX()) + (this.bishop.currentSquare.getY() + 1) +
+                "\nthe rook is on square " + rank.get(this.rook.currentSquare.getX()) + (this.rook.currentSquare.getY() + 1) + "\n");
     }
 
     public void printPieceLocations() {
