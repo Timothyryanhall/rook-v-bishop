@@ -8,7 +8,7 @@ public class Board {
     public Rook rook;
     public Bishop bishop;
     public HashSet<Square> bishopSquares;
-    private HashMap<Integer, String> rank;
+    public HashMap<Integer, String> rank;
 
     public Board() {
         this.board = new Square[8][8];
@@ -36,6 +36,7 @@ public class Board {
     public Square getSquare(int x, int y) {
         return this.board[x][y];
     }
+    public Square getSquare(Square square) {return this.board[square.getX()][square.getY()];}
 
     private void assignBishopSquares(Board board) {
         this.bishopSquares = new HashSet<>() {{
