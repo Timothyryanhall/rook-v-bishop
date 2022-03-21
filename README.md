@@ -2,6 +2,8 @@
 
 A Spring Boot Command Line Application which runs through a single game of Rook Vs Bishop or one of its variants.
 
+![Image of game board](src/main/resources/board-image.png)
+
 ## Game Explanation
 
 - Rook Vs Bishop: The white bishop remains on square c3 throughout the entirety of the game, and the black rook tries to
